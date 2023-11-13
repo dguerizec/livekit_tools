@@ -1,3 +1,4 @@
+from __future__ import annotations
 import calendar
 import dataclasses
 import datetime
@@ -80,9 +81,10 @@ def print_access_token(
         api_key: str = "dev",
         api_secret: str = "devsecret",
         identity: str = "",
+        name: str | None = None,
         ttl: str = "6h",
 ) -> None:
-    print(create_access_token(room_name=room_name, api_key=api_key, api_secret=api_secret, identity=identity, ttl=ttl))
+    print(create_access_token(room_name=room_name, api_key=api_key, api_secret=api_secret, identity=identity, name=name, ttl=ttl))
 
 
 def create_access_token(
@@ -90,12 +92,13 @@ def create_access_token(
         api_key: str = "dev",
         api_secret: str = "devsecret",
         identity: str = "",
+        name: str | None = None,
         ttl: datetime.timedelta | str = datetime.timedelta(hours=6),
 ) -> str:
     if isinstance(ttl, str):
         ttl = datetime.timedelta(seconds=timeparse(ttl))
 
     grant = VideoGrant(room_join=True, room=room_name)
-    token = AccessToken(api_key, api_secret, identity=identity, grant=grant, ttl=ttl)
+    token = AccessToken(api_key, api_secret, grant=grant, identity=identity, name=name, ttl=ttl)
     r: str = token.to_jwt()
     return r

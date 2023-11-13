@@ -34,6 +34,7 @@ dependencies = [
 [project.scripts]
 "livekit_token.py" = "livekit_tools.__main__:main_token"
 "livekit_url.py" = "livekit_tools.__main__:main_url"
+"livekit_peek.py" = "livekit_tools.__main__:main_peek"
 
 [tool.setuptools]
 zip-safe = true
