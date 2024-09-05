@@ -13,7 +13,7 @@ readme = "README.md"
 license = {file = "LICENSE"}
 keywords = ["livekit", "camera", "capture", "console", "token"]
 classifiers = [
-    "Development Status :: 0 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: Other/Proprietary License",
     "Operating System :: POSIX :: Linux",
@@ -27,6 +27,7 @@ dependencies = [
     "PyJWT",
     "numpy",
     "livekit",
+    "livekit-api",
     "pytimeparse2",
     "typer",
 ]
@@ -35,6 +36,8 @@ dependencies = [
 "livekit_token.py" = "livekit_tools.__main__:main_token"
 "livekit_url.py" = "livekit_tools.__main__:main_url"
 "livekit_peek.py" = "livekit_tools.__main__:main_peek"
+"livekit_decode.py" = "livekit_tools.__main__:main_decode"
+"livekit_verify.py" = "livekit_tools.__main__:main_verify"
 
 [tool.setuptools]
 zip-safe = true
@@ -130,9 +133,9 @@ addopts = "--ignore setup.py --ignore docs --ignore ci --pyargs"
 
 
 [tool.ruff]
-select = ["A", "B", "C", "E", "F"]
+lint.select = ["A", "B", "C", "E", "F"]
 line-length = 120
-ignore = ["A001", "A002", "A003", "D203", "D213", "C901"]
+lint.ignore = ["A001", "A002", "A003", "D203", "D213", "C901"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "*/tests/**" = ["E501", "D"]
