@@ -120,6 +120,16 @@ black:  ## Run the black tool and update files that need to
 	@echo "$(BOLD)Running black$(RESET)"
 	@black --target-version py310 $(SOURCE_ROOT)
 
+.PHONY: package
+package:  ## Create a package
+	@echo "$(BOLD)Creating package$(RESET)"
+	@python setup.py sdist bdist_wheel
+
+.PHONY: publish
+publish:  ## Publish the package to the pypi repository
+	@echo "$(BOLD)Publishing package$(RESET)"
+	@twine upload dist/*
+
 .PHONY: archive
 archive:  ## Create a text archive suitable for AI chatbots
 	@echo "$(BOLD)Creating archive$(RESET)"
